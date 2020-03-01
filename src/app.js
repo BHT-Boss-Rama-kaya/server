@@ -5,11 +5,10 @@ if (process.NODE_ENV === "development") {
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const morgan = require("morgan");
+const logger = require("morgan")('dev');
 const router = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 3000;
-const logger = morgan("dev");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
