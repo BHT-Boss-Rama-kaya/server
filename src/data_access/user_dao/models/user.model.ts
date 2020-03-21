@@ -38,12 +38,13 @@ User.init(
             allowNull: false
         },
         password: {
-            type: new DataTypes.STRING(32),
+            type: new DataTypes.STRING(128),
             allowNull: false
         }
     },
     {
         hooks: {
+            // eslint-disable-next-line no-shadow
             beforeCreate: User => {
                 const hashedPassword = getHash(User.getDataValue('password'));
                 User.setDataValue('password', hashedPassword);

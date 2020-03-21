@@ -1,7 +1,8 @@
 import { User } from './models/user.model';
-import { IUser } from '../../interfaces/user-interfaces';
-import { generateToken, verifyToken } from '../../helpers/json-web-token';
+import { IUser } from '../../interfaces/user_interface';
+import { generateToken, verifyToken } from '../../helpers/json_web_token';
 import { compareHash } from '../../helpers/bcrypt';
+import { ErrorBuilder } from '../../helpers/error_builder';
 
 export class UserDAO {
     static async create(payload: IUser): Promise<User> {
@@ -9,8 +10,8 @@ export class UserDAO {
             const userCreated = await User.create(payload);
             return userCreated;
         } catch (err) {
-            console.log(err);
-            throw new Error(err);
+            const errorBuilder = new ErrorBuilder(err);
+            throw errorBuilder.setError();
         }
     }
 }

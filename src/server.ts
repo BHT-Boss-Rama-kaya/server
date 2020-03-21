@@ -23,6 +23,7 @@
 import express from 'express';
 import cors from 'cors';
 import { router } from './router/index';
+import { errorHandler } from './middlewares/error_handler';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,5 +33,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/', router);
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

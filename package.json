@@ -48,6 +48,7 @@
     "@types/joi": "^14.3.4",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/node": "^12.12.17",
+    "@types/ramda": "^0.26.44",
     "@types/sequelize": "^4.28.8",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.6.1",
