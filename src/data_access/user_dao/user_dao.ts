@@ -11,7 +11,7 @@ export class UserDAO {
             return userCreated;
         } catch (err) {
             const errorBuilder = new ErrorBuilder(err);
-            throw errorBuilder.setError();
+            throw errorBuilder.throwError();
         }
     }
 }

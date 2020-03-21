@@ -3,7 +3,7 @@ import { userRouter } from './user-router';
 
 const router = express.Router();
 
-router.get('/health', function(req: Request, res: Response) {
+router.get('/health', function healthChecker(req: Request, res: Response) {
     res.status(200).json({ message: 'Connected' });
 });
 

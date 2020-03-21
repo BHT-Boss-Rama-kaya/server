@@ -9,7 +9,7 @@ export class ErrorBuilder {
         this.errorContext = errorContext;
     }
 
-    public setError(): ErrorContext {
+    public throwError(): ErrorContext {
         return this.errorContext;
     }
 }

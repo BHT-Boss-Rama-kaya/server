@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as R from 'ramda';
 import { ErrorCodes } from '../interfaces/error_interface';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function errorHandler(err: ErrorCodes, req: Request, res: Response, next: NextFunction) {
     let statusCode = err.errorCode || 500;
     let message = err.message || 'INTERNAL SERVER ERROR';
@@ -11,9 +12,9 @@ export function errorHandler(err: ErrorCodes, req: Request, res: Response, next:
         case 'SequelizeValidationError':
             {
                 const errValidation: string[] = [];
-                err.errors.forEach(el => {
-                    errValidation.push(el.message);
-                });
+                const addErrValidation = (x: { message: string }) => errValidation.push(x.message);
+
+                R.forEach(addErrValidation, err.errors);
 
                 statusCode = 400;
                 message = 'Sequelize Validation Error';
@@ -24,8 +25,8 @@ export function errorHandler(err: ErrorCodes, req: Request, res: Response, next:
                 res.status(statusCode).json({ message, context });
             }
             break;
-
         default:
+            res.status(statusCode).json({ message, context });
             break;
     }
 }
